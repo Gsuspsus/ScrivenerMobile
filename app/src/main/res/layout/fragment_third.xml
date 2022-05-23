@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ThirdFragment">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="10pt"
+        android:id="@+id/contents"
+        android:text="I denne rapport vil jeg udforske hvordan man kan skabe en mobilversion af et “Desktop Only” program. Det vil jeg gøre via et eksempel der tager udgangspunkt I at udvikle en simpel editor til Scrivener [ En forklaring af scrivener kommer I et følgende afsnit]projekter som er synkroniseret igennem Google Drev. I den moderne verden er ideen om cross-platform programmer så integreret I vores opfattelse af teknologi at det faktum at Desktop Only programmer findes både forundrende og et stort irritationsmoment. Jeg vil komme ind på blandt andet Google Drev API’en og XML parsing såvel som en mere generel strategi til hvordan mobiloplevelser af sådanne programmer kan skabes."
+    />
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/menu_notes"
+        />
+
+</LinearLayout>
