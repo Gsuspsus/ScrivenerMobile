@@ -9,12 +9,18 @@ import android.view.ViewGroup
 import com.example.scrivenermobile.databinding.FragmentSecondBinding
 import com.example.scrivenermobile.databinding.FragmentThirdBinding
 import java.io.File
+import android.R
+import android.graphics.Color
+import androidx.navigation.fragment.findNavController
+import jp.wasabeef.richeditor.RichEditor
+
 
 class ThirdFragment : Fragment() {
 
     private var _binding: FragmentThirdBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var path : String
+    private lateinit var contentsFile : File
 
     // TODO: Rename and change types of parameters
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,5 +40,8 @@ class ThirdFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val args = ThirdFragmentArgs.fromBundle(requireArguments())
+        path = args.filePath
+        contentsFile = File(path)
+        binding.contents.setText(contentsFile.readText())
     }
 }

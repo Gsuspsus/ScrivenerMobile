@@ -38,11 +38,13 @@ class ProjectAdapter(private val dataSet: Array<ScrivenerFolder>) :
 
             // Get element from your dataset at this position and replace the
             // contents of the view with that element
-            viewHolder.folderView.text = dataSet[position].folderName + " (Mappe)"
-            viewHolder.fileView.text = "test" //dataSet[position].files[0].name
+            val currentFolder = dataSet[position]
+            viewHolder.folderView.text = currentFolder.folderName + " (Mappe)"
+            val currentFolderIsEmpty = currentFolder.files.count() == 0
+            viewHolder.fileView.text = if(currentFolderIsEmpty) "Empty" else "content.rtf"
 
             viewHolder.folderView.setOnClickListener(View.OnClickListener {
-                val path = dataSet[position].folderName + "/" + viewHolder.fileView.text.toString()
+                val path = dataSet[position].folderPath + "/" + viewHolder.fileView.text.toString()
                 val action = SecondFragmentDirections.actionSecondFragmentToThirdFragment(path)
                 it.findNavController().navigate(action)
             })

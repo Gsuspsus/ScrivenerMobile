@@ -20,6 +20,7 @@ import java.io.*
 import java.util.zip.ZipInputStream
 import android.content.Intent
 import android.net.Uri
+import services.ScrivenerParser
 
 
 /**
@@ -46,11 +47,15 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val args = SecondFragmentArgs.fromBundle(requireArguments())
-        Decompresser(ZipInputStream(ByteArrayInputStream(args.zipped.toByteArray()))).unzip()
+        //val args = SecondFragmentArgs.fromBundle(requireArguments())
         val path = requireContext().filesDir.absolutePath + "/scriv/_Scriv/EksamensOpgave2022.scriv/Files/Data"
+        //Decompresser(ZipInputStream(ByteArrayInputStream(args.zipped.toByteArray())),  requireContext().filesDir.absolutePath).unzip()
         val f = File(path)
-        data = f.listFiles().map{ ScrivenerFolder(it.path, it.listFiles())}.toTypedArray()
+        data = f.listFiles().filter(){
+            it.isDirectory
+        }.map{
+            ScrivenerFolder(it.absolutePath, it.name /*change to folder name from scrivx*/, it.listFiles())
+        }.toTypedArray()
 
         recyclerView = view.findViewById(R.id.recyclerView)
         val adapter = ProjectAdapter(data)
